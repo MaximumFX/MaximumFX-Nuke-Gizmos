@@ -3,7 +3,7 @@ Nuke Gizmos and Tools created by [MaximumFX](http://maximumfx.nl/).
 
 ### Table of Contents
 **[Installation](#installation)**<br>
-**[List of Tools](#list-of-tools)**<br>
+**[List of Tools](#-list-of-tools)**<br>
 
 ## Installation
 All the gizmos will be automatically added to the menu when you install the toolset.
