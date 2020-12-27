@@ -1,0 +1,188 @@
+#! /Applications/Nuke12.2v3/Nuke12.2v3.app/Contents/MacOS/libnuke-12.2.3.dylib -nx
+version 12.2 v3
+Gizmo {
+ inputs 2
+ tile_color 0x22932eff
+}
+ BackdropNode {
+  inputs 0
+  name BackdropNode5
+  tile_color 0x7171c600
+  label Gray
+  note_font_size 32
+  xpos -389
+  ypos -149
+  bdwidth 198
+  bdheight 148
+ }
+ BackdropNode {
+  inputs 0
+  name BackdropNode6
+  tile_color 0x378e57ff
+  label Alpha
+  note_font_size 32
+  xpos -8
+  ypos -239
+  bdwidth 101
+  bdheight 90
+ }
+ BackdropNode {
+  inputs 0
+  name BackdropNode7
+  tile_color 0xc63939ff
+  label Red
+  note_font_size 42
+  xpos -508
+  ypos -259
+  bdheight 108
+ }
+ Input {
+  inputs 0
+  name roto
+  xpos -58
+  ypos -317
+ }
+ Dot {
+  name Dot9
+  xpos -24
+  ypos -277
+ }
+ Input {
+  inputs 0
+  name image
+  xpos -153
+  ypos -383
+  number 1
+ }
+ Dot {
+  name Dot3
+  xpos -119
+  ypos -331
+ }
+set N24188c00 [stack 0]
+ Copy {
+  inputs 2
+  from0 rgba.alpha
+  to0 rgba.alpha
+  name Copy3
+  xpos -153
+  ypos -284
+ }
+ Dot {
+  name Dot1
+  xpos -119
+  ypos -176
+ }
+set N24188400 [stack 0]
+ Shuffle2 {
+  fromInput1 {{0} B}
+  fromInput2 {{0} B}
+  mappings "4 rgba.alpha 0 3 rgba.alpha 0 3 rgba.alpha 0 3 rgba.blue 0 2 rgba.alpha 0 3 rgba.green 0 1 rgba.alpha 0 3 rgba.red 0 0"
+  name Shuffle2
+  xpos 2
+  ypos -179
+ }
+ Dot {
+  name Dot7
+  xpos 36
+  ypos 139
+ }
+push $N24188400
+ Dot {
+  name Dot5
+  xpos -246
+  ypos -176
+ }
+set N2410b400 [stack 0]
+push $N24188c00
+ Dot {
+  name Dot6
+  xpos -464
+  ypos -331
+ }
+ Grade {
+  inputs 1+1
+  add {0.3 0 0 0}
+  name Grade2
+  xpos -498
+  ypos -179
+ }
+ Dot {
+  name Dot8
+  xpos -464
+  ypos 37
+ }
+push $N2410b400
+ Premult {
+  name Premult2
+  xpos -280
+  ypos -108
+ }
+ EdgeExtend {
+  sourceIsPremultiplied true
+  name EdgeExtend2
+  xpos -280
+  ypos -84
+ }
+ Constant {
+  inputs 0
+  channels rgb
+  color 0.1
+  name Constant2
+  xpos -379
+  ypos -84
+ }
+ Merge2 {
+  inputs 2
+  bbox B
+  name Merge2
+  xpos -280
+  ypos -60
+ }
+push $N24188400
+add_layer {roto_gray roto_gray.red roto_gray.green roto_gray.blue}
+ Copy {
+  inputs 2
+  from0 rgba.red
+  to0 roto_gray.red
+  from1 rgba.green
+  to1 roto_gray.green
+  from2 rgba.blue
+  to2 roto_gray.blue
+  name Copy4
+  selected true
+  xpos -153
+  ypos -74
+ }
+add_layer {roto_red roto_red.red roto_red.green roto_red.blue}
+ Copy {
+  inputs 2
+  from0 rgba.red
+  to0 roto_red.red
+  from1 rgba.green
+  to1 roto_red.green
+  from2 rgba.blue
+  to2 roto_red.blue
+  name Copy1
+  xpos -153
+  ypos 20
+ }
+add_layer {roto_alpha roto_alpha.red roto_alpha.green roto_alpha.blue}
+ Copy {
+  inputs 2
+  from0 rgba.red
+  to0 roto_alpha.red
+  from1 rgba.green
+  to1 roto_alpha.green
+  from2 rgba.blue
+  to2 roto_alpha.blue
+  name Copy2
+  xpos -153
+  ypos 122
+ }
+ Output {
+  name Output1
+  xpos -153
+  ypos 227
+ }
+end_group
